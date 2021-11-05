@@ -42,7 +42,7 @@
 						</td>
 						<td class="align-it 
                         {% if task.done == true %}
-                            {{ 'text-secondary' }}
+                            {{ 'text-secondary task-done' }}
                         {% endif %}
                         ">{{ task.name }}</td>
 
@@ -63,7 +63,7 @@
 
 						<td>
 							<a href="{{ path('list.edit', { id: task.id }) }}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-							<a href="{{ path('list.delete') }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+							<a href="{{ path('list.delete', { "id": task.id }) }}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
 						</td>
 					</tr>
 				{% endfor %}

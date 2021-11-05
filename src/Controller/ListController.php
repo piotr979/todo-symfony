@@ -46,10 +46,14 @@ class ListController extends AbstractController
         ]);
     }
 
-    #[Route('/delete', name: 'delete')]
-    public function delete() 
+    #[Route('/delete/{id}', name: 'delete')]
+    public function delete($id) 
     {
-
+        $task = $this->getDoctrine()->getRepository(Task::class)->find($id);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($task);
+        $em->flush();
+        return $this->redirectToRoute('list.showAll');
     }
     #[Route('/new-task', name: 'new-task')]
     public function addNew(Request $request)

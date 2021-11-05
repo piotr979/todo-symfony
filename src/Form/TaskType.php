@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class TaskType extends AbstractType
@@ -23,6 +24,9 @@ class TaskType extends AbstractType
                     'Medium' => 2,
                     'Low' => 3
                  ],
+            ])
+            ->add("done", CheckboxType::class, [
+                'required' => false
             ])
             ->add('save', SubmitType::class)
         ;
