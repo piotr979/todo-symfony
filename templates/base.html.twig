@@ -14,6 +14,12 @@
 		</title>
 
 		<style>
+			.medium-width {
+				width: 50%;
+			}
+			a {
+				text-decoration: none;
+			}
 			.color-block {
 				width: 25px;
 				height: 25px;
@@ -31,7 +37,19 @@
                 display: inline-block;
                 margin-top: 2rem;
             }
+			@media(max-width: 72em) {
+				.medium-width {
+				width: 80%;
+				}
+			}
+
 			@media(max-width: 40em) {
+				.mobile-block {
+					display: block;
+				}
+				.medium-width {
+				width: 100%;
+				}
 				.btn-primary {
 					margin-bottom: 1rem;
                     display: block;
