@@ -19,7 +19,9 @@ class ListController extends AbstractController
     #[Route('/', name: 'showAll')]
     public function index(): Response
     {
-        $tasks = $this->getDoctrine()->getRepository(Task::class)->findAll();
+        $tasks = $this->getDoctrine()->getRepository(Task::class)->findBy(
+            [ 'user' => $this->getUser()->getId() ]
+        );
         return $this->render('list/index.html.twig', [
             'tasks' => $tasks,
         ]);
@@ -63,7 +65,9 @@ class ListController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $task->setDone(false);
+            $task->setDone($task->getDone());
+            $task->setUser($this->getUser());
+           
             $em = $this->getDoctrine()->getManager();
             $em->persist($task);
             $em->flush();
